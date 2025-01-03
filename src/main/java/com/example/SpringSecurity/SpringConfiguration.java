@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -19,12 +20,13 @@ public class SpringConfiguration {
     //////CONFIGURE SPRING SECURITY AUTHENTICATION
 
     @Autowired
-    DataSource datasource;
+    UserDetailsService userdetailsservice;
+    //DataSource datasource;
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
        //set your configuration on auth object
         //auth.inMemoryAuthentication().withUser("reva").password(getPasswordEncoder().encode("reva")).roles("USER");
-        auth.jdbcAuthentication()
-                .dataSource(datasource);
+//        auth.jdbcAuthentication()
+//                .dataSource(datasource);
 
 
         //if want to make Default Schema and populate here itself
@@ -39,6 +41,8 @@ public class SpringConfiguration {
 //                            .password("pass")
 //                            .roles("ADMIN")
 //                );
+        auth.userDetailsService(userdetailsservice);
+
     }
 
     @Bean
