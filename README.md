@@ -9,3 +9,4 @@ Adding authentication in springboot project
 Adding authorization in springboot project
 Working of Authentication in Spring security
 How to add JDBC in springboot
+How to add JPA in spring security and connect it to local database.
